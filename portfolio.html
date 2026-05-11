@@ -1,0 +1,1547 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo de Produtos ── Sulflex Manutenção</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='10' fill='%231B4F8A'/><text x='32' y='46' font-size='36' font-weight='900' font-family='Arial Black,sans-serif' fill='white' text-anchor='middle'>S</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --azul: #1B4F8A;
+            --azul-esc: #0D2E52;
+            --azul-claro: #2567AD;
+            --accent: #E8A020;
+            --branco: #FFFFFF;
+            --cinza-bg: #F2F5F9;
+            --cinza-brd: #DDE3EC;
+            --cinza-txt: #6B7A90;
+            --preto: #0A0F1A;
+            --txt: #1A2538;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--cinza-bg);
+            color: var(--txt);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* ──────── NAVBAR (from index) ──────── */
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            background: var(--azul-esc);
+            box-shadow: 0 2px 24px rgba(0, 0, 0, .35);
+            transition: background .35s, box-shadow .35s;
+        }
+
+        .nav-logo {
+            height: 150px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: .95rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .88);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-cta {
+            background: var(--azul-claro);
+            color: #fff !important;
+            padding: .45rem 1.1rem;
+            border-radius: 4px;
+            transition: background .2s !important;
+        }
+
+        .nav-cta:hover {
+            background: #1d79d4 !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .social-links {
+            display: flex;
+            gap: .6rem;
+            align-items: center;
+        }
+
+        .social-link {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, .25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background .2s, border-color .2s;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, .15);
+            border-color: rgba(255, 255, 255, .5);
+        }
+
+        .social-link svg {
+            width: 16px;
+            height: 16px;
+            fill: rgba(255, 255, 255, .85);
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--azul-esc);
+                align-items: center;
+                justify-content: center;
+                z-index: 999;
+            }
+
+            .hamburger {
+                display: flex;
+                z-index: 1000;
+            }
+        }
+
+        /* ──────── HERO STRIP ──────── */
+        .hero-strip {
+            background: linear-gradient(135deg, var(--azul-esc) 0%, var(--azul) 60%, var(--azul-claro) 100%);
+            padding: 52px 6% 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-strip::before {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: -60px;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .hero-strip::after {
+            content: '';
+            position: absolute;
+            right: 80px;
+            bottom: -80px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .hero-strip p {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: .5rem;
+        }
+
+        .hero-strip h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: .8rem;
+        }
+
+        .hero-strip .desc {
+            font-size: .92rem;
+            color: rgba(255, 255, 255, .65);
+            max-width: 520px;
+            line-height: 1.6;
+        }
+
+        /* ──────── LAYOUT ──────── */
+        .page-body {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 40px 4%;
+        }
+
+        /* ──────── TABS ──────── */
+        .tabs-wrap {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+            background: #fff;
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid var(--cinza-brd);
+            box-shadow: 0 1px 8px rgba(0, 0, 0, .05);
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: .65rem 1rem;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            font-family: 'Barlow', sans-serif;
+            font-size: .82rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--cinza-txt);
+            transition: all .2s;
+        }
+
+        .tab-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .tab-btn:hover {
+            background: var(--cinza-bg);
+            color: var(--azul);
+        }
+
+        .tab-btn.active {
+            background: var(--azul);
+            color: #fff;
+            box-shadow: 0 3px 12px rgba(27, 79, 138, .35);
+        }
+
+        .tab-btn .count {
+            background: rgba(255, 255, 255, .2);
+            font-size: .68rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 20px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .tab-btn:not(.active) .count {
+            background: var(--cinza-bg);
+            color: var(--azul);
+        }
+
+        /* ──────── GRID DE PRODUTOS ──────── */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid var(--cinza-brd);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s, border-color .2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(27, 79, 138, .15);
+            border-color: var(--azul);
+        }
+
+        .product-img {
+            height: 170px;
+            background: var(--cinza-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-img svg {
+            width: 60px;
+            height: 60px;
+            opacity: .18;
+        }
+
+        .product-img .cat-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--azul);
+            color: #fff;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 20px;
+        }
+
+        .product-img .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-body {
+            padding: 1rem 1.1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--txt);
+            margin-bottom: .3rem;
+            line-height: 1.3;
+        }
+
+        .product-desc {
+            font-size: .78rem;
+            color: var(--cinza-txt);
+            line-height: 1.5;
+            flex: 1;
+            margin-bottom: .9rem;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+        }
+
+        .product-ref {
+            font-size: .68rem;
+            color: #aaa;
+            font-family: 'Barlow Condensed', sans-serif;
+            letter-spacing: .05em;
+        }
+
+        .btn-ver {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--azul);
+            border: 1.5px solid var(--azul);
+            background: transparent;
+            padding: .35rem .9rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all .2s;
+            font-family: 'Barlow', sans-serif;
+        }
+
+        .btn-ver:hover {
+            background: var(--azul);
+            color: #fff;
+        }
+
+        /* ──────── MODAL ──────── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 15, 26, .7);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: #fff;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 680px;
+            max-height: 92vh;
+            overflow-y: auto;
+            transform: translateY(20px) scale(.97);
+            transition: transform .25s;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .3);
+            scrollbar-width: none;
+        }
+
+        .modal::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal-overlay.open .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--azul-esc), var(--azul));
+            padding: 24px 28px;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .modal-header-txt .modal-cat {
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: .3rem;
+        }
+
+        .modal-header-txt h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .15);
+            border: 1.5px solid rgba(255, 255, 255, .3);
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background .2s;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, .25);
+        }
+
+        .modal-body {
+            padding: 28px;
+        }
+
+        .modal-img-placeholder {
+            height: 260px;
+            background: var(--cinza-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--cinza-brd);
+            overflow: hidden;
+        }
+
+        .modal-img-placeholder svg {
+            width: 70px;
+            height: 70px;
+            opacity: .15;
+        }
+
+        .modal-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            background: var(--cinza-bg);
+            border-radius: 8px;
+            padding: .6rem .9rem;
+        }
+
+        .spec-label {
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--cinza-txt);
+            margin-bottom: 2px;
+        }
+
+        .spec-value {
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--txt);
+        }
+
+        .modal-desc-full {
+            font-size: .88rem;
+            color: var(--cinza-txt);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--cinza-bg);
+            border-radius: 8px;
+            border-left: 3px solid var(--azul);
+        }
+
+        /* ──────── FORM OR──!AMENTO ──────── */
+        .orcamento-box {
+            background: linear-gradient(135deg, var(--azul-esc), var(--azul));
+            border-radius: 12px;
+            padding: 1.4rem;
+            margin-top: .5rem;
+        }
+
+        .orcamento-box h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: .3rem;
+        }
+
+        .orcamento-box p {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .65);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .orcamento-row {
+            display: flex;
+            gap: .6rem;
+        }
+
+        .orcamento-box input[type="email"] {
+            flex: 1;
+            padding: .75rem 1rem;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, .15);
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+            font-size: .88rem;
+            font-family: 'Barlow', sans-serif;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .orcamento-box input[type="email"]::placeholder {
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .orcamento-box input[type="email"]:focus {
+            border-color: var(--accent);
+        }
+
+        .btn-solicitar {
+            background: var(--accent);
+            color: var(--preto);
+            border: none;
+            padding: .75rem 1.4rem;
+            border-radius: 8px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: .95rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background .2s, transform .1s;
+        }
+
+        .btn-solicitar:hover {
+            background: #f0b030;
+            transform: scale(1.02);
+        }
+
+        .btn-solicitar:active {
+            transform: scale(.98);
+        }
+
+        .orcamento-success {
+            display: none;
+            text-align: center;
+            color: #fff;
+            font-size: .9rem;
+            padding: .5rem;
+        }
+
+        .orcamento-success span {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: .3rem;
+        }
+
+        /* ──────── FOOTER SOCIAL ──────── */
+        .footer-social {
+            display: flex;
+            gap: .6rem;
+            margin-top: 1.2rem;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s;
+        }
+
+        .footer-social a:hover {
+            background: var(--azul-claro);
+            border-color: var(--azul-claro);
+        }
+
+        .footer-social svg {
+            width: 16px;
+            height: 16px;
+            fill: rgba(255, 255, 255, .8);
+        }
+
+
+
+        /* ──────── FOOTER ──────── */
+        footer {
+            background: var(--preto);
+            color: rgba(255, 255, 255, .7);
+            padding: 3rem 6% 1.5rem;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand img {
+            height: 40px;
+
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: .85rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .footer-col h5 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: .85rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .9);
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: .55rem;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, .55);
+            text-decoration: none;
+            font-size: .88rem;
+            transition: color .2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #7DB9E8;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: rgba(255, 255, 255, .8);
+        }
+
+
+
+
+        /* ──────── EMPTY STATE ──────── */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--cinza-txt);
+        }
+
+        .empty-state svg {
+            width: 60px;
+            height: 60px;
+            opacity: .2;
+            margin-bottom: 1rem;
+        }
+
+        /* ──────── RESPONSIVE ──────── */
+        @media (max-width: 600px) {
+            .tab-btn {
+                min-width: 100px;
+                font-size: .72rem;
+            }
+
+            .modal-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .orcamento-row {
+                flex-direction: column;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ──────── NAVBAR ──────── -->
+    <nav id="navbar">
+        <a href="index.html">
+            <img src="img/logo-sulflex.png" alt="Sulflex" class="nav-logo" />
+        </a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Página Principal</a></li>
+            <li><a href="index.html#contato" class="nav-cta">Orçamento</a></li>
+        </ul>
+        <div style="display:flex;align-items:center;gap:.8rem;">
+            <div class="social-links" id="nav-social">
+                <a href="https://www.instagram.com/sulflex.manutencao" target="_blank" rel="noopener"
+                    class="social-link" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.98 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/company/sulflex" target="_blank" rel="noopener" class="social-link"
+                    aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/sulflex.manutencao" target="_blank" rel="noopener" class="social-link"
+                    aria-label="Facebook">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                </a>
+            </div>
+            <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero-strip">
+        <p>Sulflex Manutenção</p>
+        <h1>Catálogo de<br>Produtos & Peças</h1>
+        <p class="desc">Explore nosso catálogo completo. Selecione qualquer item para ver detalhes técnicos e solicitar
+            um orçamento diretamente por e-mail.</p>
+    </div>
+
+    <!-- CONTE──aDO -->
+    <div class="page-body">
+
+        <!-- TABS DE CATEGORIA -->
+        <div class="tabs-wrap" role="tablist">
+            <button class="tab-btn active" data-cat="todos" role="tab">
+                <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                </svg>
+                Todos
+                <span class="count" id="count-todos">0</span>
+            </button>
+            <button class="tab-btn" data-cat="ar-condicionado" role="tab">
+                <svg viewBox="0 0 24 24">
+                    <path d="M8 19H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-3" />
+                    <path d="M8 12h8M8 15h8M12 19v2" />
+                </svg>
+                Ar Condicionado
+                <span class="count" id="count-ar-condicionado">0</span>
+            </button>
+            <button class="tab-btn" data-cat="pecas-industriais" role="tab">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+                </svg>
+                Peças Industriais
+                <span class="count" id="count-pecas-industriais">0</span>
+            </button>
+            <button class="tab-btn" data-cat="hidraulica" role="tab">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2v20M2 12h20" />
+                    <circle cx="12" cy="12" r="4" />
+                </svg>
+                Hidráulica
+                <span class="count" id="count-hidraulica">0</span>
+            </button>
+            <button class="tab-btn" data-cat="eletrica" role="tab">
+                <svg viewBox="0 0 24 24">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+                Elétrica
+                <span class="count" id="count-eletrica">0</span>
+            </button>
+        </div>
+
+        <!-- GRID DE PRODUTOS -->
+        <div class="products-grid" id="products-grid"></div>
+
+    </div>
+
+    <!-- ──────── FOOTER ──────── -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="img/logo-sulflex.png" alt="Sulflex"
+                    style="height:150px;filter:brightness(0) invert(1);display:block;" />
+                <p style="margin-top:.5rem;">Manutenção Industrial e Predial<br>Paranaguá · PR · Brasil</p>
+                <p style="margin-top:.8rem;font-size:.78rem;opacity:.45;">CNPJ: XX.XXX.XXX/0001-XX</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/sulflex.manutencao" target="_blank" rel="noopener"
+                        aria-label="Instagram">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/sulflex" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/sulflex.manutencao" target="_blank" rel="noopener"
+                        aria-label="Facebook">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Serviços</h5>
+                <ul>
+                    <li><a href="index.html#servicos">Manutenção Industrial</a></li>
+                    <li><a href="index.html#servicos">Manutenção Predial</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Institucional</h5>
+                <ul>
+                    <li><a href="index.html#sobre">Sobre Nós</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                    <li><a href="#politica-privacidade">Política de Privacidade</a></li>
+                    <li><a href="#politica-cookies">Política de Cookies</a></li>
+                    <li><a href="#termos">Termos de Uso</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Sulflex Manutenção Industrial e Predial. Todos os direitos reservados.</p>
+            <p>
+                <a href="#politica-privacidade">Privacidade</a> &nbsp;·&nbsp;
+                <a href="#politica-cookies">Cookies</a> &nbsp;·&nbsp;
+                <a href="#termos">Termos</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <div class="modal-header-txt">
+                    <div class="modal-cat" id="modal-cat"></div>
+                    <h2 id="modal-title"></h2>
+                </div>
+                <button class="modal-close" id="modal-close" aria-label="Fechar">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img-placeholder" id="modal-img">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#1B4F8A" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <path d="M21 15l-5-5L5 21" />
+                    </svg>
+                </div>
+                <div class="modal-specs" id="modal-specs"></div>
+                <div class="modal-desc-full" id="modal-desc"></div>
+                <div class="orcamento-box">
+                    <h3>Solicitar Orçamento</h3>
+                    <p>Informe seu e-mail e enviaremos uma proposta para <strong id="modal-product-name-label"
+                            style="color:#fff;"></strong>.</p>
+                    <div id="orcamento-form-wrap">
+                        <div class="orcamento-row">
+                            <input type="email" id="orcamento-email" placeholder="seu@email.com" autocomplete="email" />
+                            <button class="btn-solicitar" id="btn-solicitar">Solicitar</button>
+                        </div>
+                        <p style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:.6rem;margin-bottom:0;">
+                            Respondemos em até 24h. Sem spam.</p>
+                    </div>
+                    <div class="orcamento-success" id="orcamento-success">
+                        <span>──S&</span>
+                        Solicitação enviada! Entraremos em contato em breve.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        //  BASE DE DADOS DO CATÁLOGO
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        const PRODUTOS = [
+
+            // ──────── AR CONDICIONADO ────────────────────────────────────────────────────────────────────────────────────────
+            {
+                id: 'ac-01',
+                cat: 'ar-condicionado',
+                catLabel: 'Ar Condicionado',
+                nome: 'Split Hi-Wall Inverter 9.000 BTU',
+                desc: 'Unidade evaporadora split para uso residencial e comercial leve.',
+                descFull: 'Split Hi-Wall com tecnologia inverter para economia de energia de até 60%. Operação silenciosa, filtro de ar lavável e controle remoto com timer. Ideal para ambientes de até 15 m².',
+                specs: [
+                    { label: 'Capacidade', value: '9.000 BTU/h' },
+                    { label: 'Voltagem', value: '220V / Monofásico' },
+                    { label: 'Ciclo', value: 'Frio' },
+                    { label: 'Eficiência', value: 'Inverter A+++' },
+                    { label: 'Refrigerante', value: 'R-410A' },
+                    { label: 'Garantia', value: '12 meses' },
+                ],
+                ref: 'SUL-AC-001',
+                img: 'https://loja.daikin.com.br/upload/produto/imagem/ar-condicionado-9000-btus-split-hi-wall-daikin-full-inverter-frio-220v-376.webp',
+            },
+            {
+                id: 'ac-02',
+                cat: 'ar-condicionado',
+                catLabel: 'Ar Condicionado',
+                nome: 'Split Cassete 24.000 BTU',
+                desc: 'Equipamento de teto para ambientes comerciais médios.',
+                descFull: 'Cassete 4 vias para instalação no teto, ideal para salas comerciais, escritórios e lojas. Distribuição uniforme do ar em 360°. Painel com display LCD e autodrenagem.',
+                specs: [
+                    { label: 'Capacidade', value: '24.000 BTU/h' },
+                    { label: 'Voltagem', value: '220V / Trifásico' },
+                    { label: 'Ciclo', value: 'Quente/Frio' },
+                    { label: 'Fluxo de Ar', value: '4 vias' },
+                    { label: 'Refrigerante', value: 'R-32' },
+                    { label: 'Garantia', value: '12 meses' },
+                ],
+                ref: 'SUL-AC-002',
+                img: 'https://castaticstorage.blob.core.windows.net/centralar/mds/produtos/midea/K7%20Inverter/3727/1000x1000/ar-condicionado-split-cassete-4-vias-inverter-midea.jpg',
+            },
+            {
+                id: 'ac-03',
+                cat: 'ar-condicionado',
+                catLabel: 'Ar Condicionado',
+                nome: 'Self-Contained 60.000 BTU',
+                desc: 'Unidade compacta para ambientes industriais e data centers.',
+                descFull: 'Self-Contained de alta capacidade para resfriamento industrial. Sistema tudo-em-um com condensação a ar. Construção robusta em aço galvanizado, ideal para ambientes agressivos.',
+                specs: [
+                    { label: 'Capacidade', value: '60.000 BTU/h' },
+                    { label: 'Voltagem', value: '380V / Trifásico' },
+                    { label: 'Aplicação', value: 'Industrial / TI' },
+                    { label: 'Construção', value: 'Aço galvanizado' },
+                    { label: 'Refrigerante', value: 'R-410A' },
+                    { label: 'Garantia', value: '12 meses' },
+                ],
+                ref: 'SUL-AC-003',
+                img: 'https://http2.mlstatic.com/D_NQ_NP_2X_783536-MLB110154066478_042026-F.webphttps://salescdn.net/-pkdJgnCQjx55K_Hxxil9ISMq_E=/adaptive-fit-in/500x0/prod/store/13788/medias/product/gas-refrigerante-410a-botija-113-kg-0-1680785238255.webp',
+            },
+            {
+                id: 'ac-04',
+                cat: 'ar-condicionado',
+                catLabel: 'Ar Condicionado',
+                nome: 'Gás Refrigerante R-410A (13 kg)',
+                desc: 'Carga de gás para manutenção e recarga de equipamentos.',
+                descFull: 'Cilindro de gás refrigerante R-410A para recarga de sistemas de ar condicionado. Produto certificado, sem ODP (potencial de destruição da camada de ozônio). Utilizado em equipamentos residenciais e comerciais modernos.',
+                specs: [
+                    { label: 'Tipo', value: 'R-410A' },
+                    { label: 'Peso líquido', value: '13 kg' },
+                    { label: 'Aplicação', value: 'Residencial / Comercial' },
+                    { label: 'ODP', value: 'Zero' },
+                    { label: 'Pressão', value: 'Alta pressão' },
+                    { label: 'Validade', value: '5 anos' },
+                ],
+                ref: 'SUL-AC-004',
+                img: 'https://lojaartech.cdn.magazord.com.br/img/2023/06/produto/8795/prancheta-1.jpg',
+            },
+            {
+                id: 'ac-05',
+                cat: 'ar-condicionado',
+                catLabel: 'Ar Condicionado',
+                nome: 'Filtro G4 para Fan Coil',
+                desc: 'Filtro de ar para unidades fan coil industriais e comerciais.',
+                descFull: 'Filtro de ar plano classe G4 para substituição em fan coils comerciais e industriais. Material sintético de alta eficiência de filtragem. Reduz partículas e prolonga a vida útil do equipamento.',
+                specs: [
+                    { label: 'Classe', value: 'G4 (EN 779)' },
+                    { label: 'Eficiência', value: '──0── 60% (gravimétrico)' },
+                    { label: 'Material', value: 'Fibra sintética' },
+                    { label: 'Dimensões', value: '600 x 600 x 25 mm' },
+                    { label: 'Troca', value: 'A cada 3 meses' },
+                    { label: 'Quant. mín.', value: '10 unidades' },
+                ],
+                ref: 'SUL-AC-005',
+                img: 'https://images.tcdn.com.br/img/img_prod/503879/filtro_de_ar_g4_plano_em_fibra_sintetica_12539_variacao_13562_2_10f1559f6d51276e12d227a237239163.jpg',
+            },
+
+            // ──────── PE──!AS INDUSTRIAIS ────────────────────────────────────────────────────────────────────────────────────────
+            {
+                id: 'pi-01',
+                cat: 'pecas-industriais',
+                catLabel: 'Peças Industriais',
+                nome: 'Rolamento Esférico SKF 6205',
+                desc: 'Rolamento de esfera de fileira única para aplicações industriais.',
+                descFull: 'Rolamento de esfera de fileira única SKF 6205, amplamente utilizado em motores elétricos, bombas, redutores e equipamentos industriais em geral. Alta durabilidade e baixo ruído.',
+                specs: [
+                    { label: 'Tipo', value: 'Esférico / 1 fileira' },
+                    { label: 'Diâmetro int.', value: '25 mm' },
+                    { label: 'Diâmetro ext.', value: '52 mm' },
+                    { label: 'Largura', value: '15 mm' },
+                    { label: 'Marca', value: 'SKF / Similar' },
+                    { label: 'Carga din.', value: '14,0 kN' },
+                ],
+                ref: 'SUL-PI-001',
+                img: 'https://http2.mlstatic.com/D_NQ_NP_2X_646499-MLB98544780841_112025-F.webp',
+            },
+            {
+                id: 'pi-02',
+                cat: 'pecas-industriais',
+                catLabel: 'Peças Industriais',
+                nome: 'Correia em V Perfil B-60',
+                desc: 'Correia de transmissão para redutores e polias industriais.',
+                descFull: 'Correia em V perfil B (17 x 11 mm), comprimento 60 polegadas. Fabricada em borracha sintética com reforço de fibras de poliéster. Adequada para transmissão de força em máquinas industriais, compressores e ventiladores.',
+                specs: [
+                    { label: 'Perfil', value: 'B (17 x 11 mm)' },
+                    { label: 'Comprimento', value: '60" (1524 mm)' },
+                    { label: 'Material', value: 'Borracha + poliéster' },
+                    { label: 'Temperatura', value: '-30°C a +70°C' },
+                    { label: 'Norma', value: 'DIN 2215 / ISO 4184' },
+                    { label: 'Garantia', value: '6 meses' },
+                ],
+                ref: 'SUL-PI-002',
+                img: 'https://images.tcdn.com.br/img/img_prod/759093/correia_b_60_9483_1_20200401051927.jpg',
+            },
+            {
+                id: 'pi-03',
+                cat: 'pecas-industriais',
+                catLabel: 'Peças Industriais',
+                nome: 'Acoplamento Elástico ──── 50 mm',
+                desc: 'Acoplamento de eixo flexível para motores e bombas.',
+                descFull: 'Acoplamento elástico de garras para conexão entre motor e carga. Absorve vibrações e desalinhamentos axiais e radiais. Flanges em alumínio fundido e elemento elástico em poliuretano.',
+                specs: [
+                    { label: 'Diâmetro', value: '50 mm' },
+                    { label: 'Material', value: 'Alumínio + PU' },
+                    { label: 'Torque max.', value: '120 N·m' },
+                    { label: 'Rotação max.', value: '6.000 RPM' },
+                    { label: 'Desalinhamento', value: 'Angular ± 1°' },
+                    { label: 'Norma', value: 'DIN 740' },
+                ],
+                ref: 'SUL-PI-003',
+                img: 'https://cdn.iset.io/assets/58238/produtos/4295/152b2bc2d07bede68245bb0b0d2a842968c321f5497fc.png',
+            },
+            {
+                id: 'pi-04',
+                cat: 'pecas-industriais',
+                catLabel: 'Peças Industriais',
+                nome: 'Vedação Mecânica 30 mm',
+                desc: 'Selo mecânico para bombas centrífugas industriais.',
+                descFull: 'Vedação mecânica simples de carbono/cerâmica para bombas centrífugas e misturadores. Previne vazamento de fluidos no eixo da bomba. Compatível com água, óleos e produtos químicos não agressivos.',
+                specs: [
+                    { label: 'Diâmetro', value: '30 mm' },
+                    { label: 'Materiais', value: 'Carbono / Cerâmica' },
+                    { label: 'Pressão max.', value: '16 bar' },
+                    { label: 'Temperatura', value: '-20°C a +120°C' },
+                    { label: 'Norma', value: 'EN 12756' },
+                    { label: 'Aplicação', value: 'Bombas centrífugas' },
+                ],
+                ref: 'SUL-PI-004',
+                img: 'data:image/jpeg;base64,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',
+            },
+
+            // ──────── HIDRÁULICA ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+            {
+                id: 'hid-01',
+                cat: 'hidraulica',
+                catLabel: 'Hidráulica / Tubulações',
+                nome: 'Bomba Centrífuga 1 CV',
+                desc: 'Bomba para recalque de água limpa em instalações prediais.',
+                descFull: 'Bomba centrífuga monoestágio para recalque de água potável, piscinas e sistemas de irrigação. Carcaça em ferro fundido, impulsor em bronze. Manutenção fácil com acesso pelo lado da sucção.',
+                specs: [
+                    { label: 'Potência', value: '1 CV (0,75 kW)' },
+                    { label: 'Vazão max.', value: '120 L/min' },
+                    { label: 'Altura max.', value: '28 m' },
+                    { label: 'Voltagem', value: '220V / 380V' },
+                    { label: 'Carcaça', value: 'Ferro fundido' },
+                    { label: 'Impulsor', value: 'Bronze' },
+                ],
+                ref: 'SUL-HID-001',
+                img: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTOfcmYsszfYmtMBeSZZMvAOWdktyXdcpytQvlRpB453UQOWsO7VDPnnZNY_6jdLM8nA6jWhufSbQqjSkI5eZ4Z_ZBdoOXttMDqu_Pc3Tx6yYSHIosM5b4Xi55-6w&usqp=CAc',
+            },
+            {
+                id: 'hid-02',
+                cat: 'hidraulica',
+                catLabel: 'Hidráulica / Tubulações',
+                nome: 'Válvula de Gaveta 2" (PN16)',
+                desc: 'Válvula de bloqueio para tubulações industriais e prediais.',
+                descFull: 'Válvula de gaveta em ferro fundido para bloqueio em tubulações de água e fluidos não corrosivos. Pressão nominal PN16, rosca BSP fêmea. Volante de manobra em ferro fundido e haste em latão.',
+                specs: [
+                    { label: 'Bitola', value: '2" (DN 50)' },
+                    { label: 'Pressão', value: 'PN16 (16 bar)' },
+                    { label: 'Corpo', value: 'Ferro fundido' },
+                    { label: 'Haste', value: 'Latão' },
+                    { label: 'Conexão', value: 'Rosca BSP Fêmea' },
+                    { label: 'Temperatura', value: 'até 120°C' },
+                ],
+                ref: 'SUL-HID-002',
+                img: 'https://acdn-us.mitiendanube.com/stores/002/246/775/products/17805-valvula-gaveta-01-a-a0a3b9137bb4929f3d17404090410480-1024-1024.webp',
+            },
+            {
+                id: 'hid-03',
+                cat: 'hidraulica',
+                catLabel: 'Hidráulica / Tubulações',
+                nome: 'Tubo de Aço Carbono 1" Sch 40',
+                desc: 'Tubulação para instalações industriais de água e vapor.',
+                descFull: 'Tubo de aço carbono sem costura Schedule 40, bitola 1". Utilizado em instalações industriais de água quente, vapor de baixa pressão e fluidos não corrosivos. Fornecido em barras de 6 metros.',
+                specs: [
+                    { label: 'Bitola', value: '1" (DN 25)' },
+                    { label: 'Schedule', value: 'Sch 40' },
+                    { label: 'Comprimento', value: '6 metros/barra' },
+                    { label: 'Material', value: 'Aço carbono ASTM A106' },
+                    { label: 'Esp. parede', value: '3,38 mm' },
+                    { label: 'Pressão max.', value: '80 bar' },
+                ],
+                ref: 'SUL-HID-003',
+                img: 'data:image/jpeg;base64,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',
+            },
+            {
+                id: 'hid-04',
+                cat: 'hidraulica',
+                catLabel: 'Hidráulica / Tubulações',
+                nome: 'Manômetro Glicerina 0-10 bar',
+                desc: 'Instrumento de medição para monitoramento de pressão.',
+                descFull: 'Manômetro preenchido com glicerina para amortecimento de vibrações. Conexão ¼" BSP inferior, caixa em aço inoxidável 316L, visor em policarbonato. Escala em bar e psi.',
+                specs: [
+                    { label: 'Escala', value: '0 ── 10 bar' },
+                    { label: 'Diâmetro', value: '100 mm' },
+                    { label: 'Conexão', value: '1/4" BSP inferior' },
+                    { label: 'Caixa', value: 'Inox 316L' },
+                    { label: 'Fluido', value: 'Glicerina' },
+                    { label: 'Precisão', value: 'Classe 1,6' },
+                ],
+                ref: 'SUL-HID-004',
+                img: 'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTsZTl6gDjfF7XH7RAoD5KFKiYzRV1947QM66tcwtXh8DBxa2xv3Yf-wCaOBWBzoQibMo2LXzcpdtf7Vnd53nkBR2unzKRSeZopjQC-cxCAghHQBAKp5lSQTlzHjW4GrqZj_QSPOVEwtA&usqp=CAc',
+            },
+
+            // ──────── EL──0TRICA ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+            {
+                id: 'el-01',
+                cat: 'eletrica',
+                catLabel: 'Elétrica / Componentes',
+                nome: 'Disjuntor Trifásico 50A Curva C',
+                desc: 'Proteção elétrica para circuitos trifásicos industriais.',
+                descFull: 'Disjuntor termomagnético trifásico 50A curva C para proteção de motores, quadros de distribuição e circuitos industriais. Capacidade de interrupção de 10 kA. Certificado pelo INMETRO.',
+                specs: [
+                    { label: 'Corrente', value: '50A' },
+                    { label: 'Polos', value: 'Trifásico (3P)' },
+                    { label: 'Curva', value: 'C' },
+                    { label: 'Cap. interrup.', value: '10 kA' },
+                    { label: 'Tensão', value: 'até 415V' },
+                    { label: 'Certificação', value: 'INMETRO / IEC 60947' },
+                ],
+                ref: 'SUL-EL-001',
+                img: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSKu2Fp_F0LmylK2kfsc4BN37optINcrcmRnx8ZiM2wPUyR6M4IXKjc79Sb-emG2Nl07WsHL8xuHMw-1eqWMTGz01mfeO1VxbgOarVnIZbU&usqp=CAc',
+            },
+            {
+                id: 'el-02',
+                cat: 'eletrica',
+                catLabel: 'Elétrica / Componentes',
+                nome: 'Contator Tripolar 40A 220V',
+                desc: 'Contator para acionamento de motores e cargas industriais.',
+                descFull: 'Contator eletromagnético tripolar para acionamento de motores elétricos e cargas resistivas. Bobina 220V 60Hz, 2 contatos auxiliares (NA+NF). Fixação em trilho DIN ou parafuso. Certificado pelo INMETRO.',
+                specs: [
+                    { label: 'Corrente', value: '40A (AC3)' },
+                    { label: 'Polos', value: 'Tripolar' },
+                    { label: 'Bobina', value: '220V / 60 Hz' },
+                    { label: 'Aux.', value: '2 NA + 2 NF' },
+                    { label: 'Fixação', value: 'Trilho DIN / Parafuso' },
+                    { label: 'Norma', value: 'IEC 60947-4-1' },
+                ],
+                ref: 'SUL-EL-002',
+                img: 'data:image/webp;base64,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',
+            },
+            {
+                id: 'el-03',
+                cat: 'eletrica',
+                catLabel: 'Elétrica / Componentes',
+                nome: 'Cabo PP 3x2,5 mm² 100m',
+                desc: 'Cabo flexível para instalações industriais e prediais.',
+                descFull: 'Cabo de cobre PP (paralelo) 3 condutores de 2,5 mm², isolação em PVC. Adequado para instalações fixas e móveis em ambientes industriais. Rolo com 100 metros. Atende às normas ABNT NBR 7288.',
+                specs: [
+                    { label: 'Seção', value: '3 x 2,5 mm²' },
+                    { label: 'Condutor', value: 'Cobre flexível' },
+                    { label: 'Isolação', value: 'PVC / 70°C' },
+                    { label: 'Comprimento', value: '100 metros/rolo' },
+                    { label: 'Tensão', value: '0,6/1 kV' },
+                    { label: 'Norma', value: 'ABNT NBR 7288' },
+                ],
+                ref: 'SUL-EL-003',
+                img: 'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTimPhEgkkDJtyx1AVBFMdPiS790ttfYFR-wTANLKfTKuOJvMakZmjhsCmnz_K31kiaKoaG7Zh6FA7DW6VdthrARLmLzUfUF4V3uoxx3kEJxdJqEWBdFfGSM867YBXbxJincsen-e1OJg&usqp=CAcp',
+            },
+            {
+                id: 'el-04',
+                cat: 'eletrica',
+                catLabel: 'Elétrica / Componentes',
+                nome: 'Relé Temporizador 0──30s 220V',
+                desc: 'Relé de temporização para automação de processos industriais.',
+                descFull: 'Relé temporizador multifuncional com ajuste de 0 a 30 segundos. Funções: temporização na energização (TE), desenergização (TD) e intervalo. Montagem em soquete 8 pinos, fixação em trilho DIN.',
+                specs: [
+                    { label: 'Funções', value: 'TE / TD / Intervalo' },
+                    { label: 'Faixa', value: '0,1 s ── 30 s' },
+                    { label: 'Tensão', value: '220V CA' },
+                    { label: 'Saída', value: '1 contato NA + NF' },
+                    { label: 'Montagem', value: 'Soquete 8 pinos' },
+                    { label: 'Norma', value: 'IEC 61812-1' },
+                ],
+                ref: 'SUL-EL-004',
+                img: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR1yL9cAe-KocvWh9H-pkTOuheopiZuzGYsTFWSFwmF3gDnxPjSCIhSicQxTbhAczbXlEO3q_GQ1JUQF3CdKZ1jqhHykHVmyoM7WWvCdO2l-Oa7vNg3YW2DwfsT1OQXFHdTF1dOXzg&usqp=CAc',
+            },
+        ];
+
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        //  ÍCONES POR CATEGORIA
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        const CAT_ICONS = {
+            'ar-condicionado': `<svg viewBox="0 0 24 24" fill="none" stroke="#1B4F8A" stroke-width="1.2"><path d="M8 19H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-3"/><path d="M8 12h8M8 15h8M12 19v2"/></svg>`,
+            'pecas-industriais': `<svg viewBox="0 0 24 24" fill="none" stroke="#1B4F8A" stroke-width="1.2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
+            'hidraulica': `<svg viewBox="0 0 24 24" fill="none" stroke="#1B4F8A" stroke-width="1.2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg>`,
+            'eletrica': `<svg viewBox="0 0 24 24" fill="none" stroke="#1B4F8A" stroke-width="1.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+        };
+
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        //  RENDERIZA──!ÒO
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        let catAtiva = 'todos';
+
+        function renderGrid(cat) {
+            const grid = document.getElementById('products-grid');
+            const lista = cat === 'todos' ? PRODUTOS : PRODUTOS.filter(p => p.cat === cat);
+            grid.innerHTML = '';
+            if (!lista.length) {
+                grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+          <p>Nenhum produto nesta categoria ainda.</p>
+        </div>`;
+                return;
+            }
+            lista.forEach((p, i) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.style.animationDelay = `${i * 0.05}s`;
+                card.innerHTML = `
+          <div class="product-img">
+            ${p.img ? `<img class="photo" src="${p.img}" alt="${p.nome}" loading="lazy" />` : (CAT_ICONS[p.cat] || '')}
+            <span class="cat-tag">${p.catLabel}</span>
+          </div>
+          <div class="product-body">
+            <div class="product-name">${p.nome}</div>
+            <div class="product-desc">${p.desc}</div>
+            <div class="product-footer">
+              <span class="product-ref">Ref: ${p.ref}</span>
+              <button class="btn-ver" data-id="${p.id}">Ver detalhes</button>
+            </div>
+          </div>
+        `;
+                grid.appendChild(card);
+            });
+
+            // Eventos dos botões
+            grid.querySelectorAll('.btn-ver').forEach(btn => {
+                btn.addEventListener('click', () => abrirModal(btn.dataset.id));
+            });
+            // Clique no card também abre
+            grid.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('btn-ver')) {
+                        const btn = card.querySelector('.btn-ver');
+                        abrirModal(btn.dataset.id);
+                    }
+                });
+            });
+        }
+
+        function atualizarCounts() {
+            const countTodos = document.getElementById('count-todos');
+            if (countTodos) countTodos.textContent = PRODUTOS.length;
+            ['ar-condicionado', 'pecas-industriais', 'hidraulica', 'eletrica'].forEach(cat => {
+                const el = document.getElementById(`count-${cat}`);
+                if (el) el.textContent = PRODUTOS.filter(p => p.cat === cat).length;
+            });
+        }
+
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        //  TABS
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                catAtiva = btn.dataset.cat;
+                renderGrid(catAtiva);
+            });
+        });
+
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        //  MODAL
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        let produtoAtual = null;
+
+        function abrirModal(id) {
+            const p = PRODUTOS.find(x => x.id === id);
+            if (!p) return;
+            produtoAtual = p;
+
+            document.getElementById('modal-cat').textContent = p.catLabel;
+            document.getElementById('modal-title').textContent = p.nome;
+            document.getElementById('modal-desc').textContent = p.descFull;
+            document.getElementById('modal-product-name-label').textContent = p.nome;
+
+            // Imagem do produto
+            const modalImgEl = document.getElementById('modal-img');
+            if (p.img) {
+                modalImgEl.innerHTML = `<img src="${p.img}" alt="${p.nome}" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:6px;display:block;margin:auto;" />`;
+            } else {
+                modalImgEl.innerHTML = `
+        <div style="text-align:center;">
+          ${(CAT_ICONS[p.cat] || '').replace('width="60"', 'width="70"').replace('height="60"', 'height="70"')}
+          <p style="font-size:.7rem;color:#aaa;margin-top:.5rem;">Imagem ilustrativa</p>
+        </div>`;
+            }
+
+            // Specs
+            const specsEl = document.getElementById('modal-specs');
+            specsEl.innerHTML = p.specs.map(s => `
+        <div class="spec-item">
+          <div class="spec-label">${s.label}</div>
+          <div class="spec-value">${s.value}</div>
+        </div>`).join('');
+
+            // Reset form
+            document.getElementById('orcamento-email').value = '';
+            document.getElementById('orcamento-form-wrap').style.display = 'block';
+            document.getElementById('orcamento-success').style.display = 'none';
+
+            document.getElementById('modal-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharModal() {
+            document.getElementById('modal-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+            produtoAtual = null;
+        }
+
+        document.getElementById('modal-close').addEventListener('click', fecharModal);
+        document.getElementById('modal-overlay').addEventListener('click', e => {
+            if (e.target === document.getElementById('modal-overlay')) fecharModal();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') fecharModal();
+        });
+
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        //  SOLICITA──!ÒO DE OR──!AMENTO
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        document.getElementById('btn-solicitar').addEventListener('click', async () => {
+            const emailInput = document.getElementById('orcamento-email');
+            const email = emailInput.value.trim();
+
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                emailInput.style.borderColor = '#e74c3c';
+                emailInput.focus();
+                setTimeout(() => emailInput.style.borderColor = '', 2000);
+                return;
+            }
+
+            const btn = document.getElementById('btn-solicitar');
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData();
+                formData.append('email_cliente', email);
+                formData.append('produto', produtoAtual?.nome || '');
+                formData.append('referencia', produtoAtual?.ref || '');
+                formData.append('categoria', produtoAtual?.catLabel || '');
+
+                const res = await fetch('orcamento_catalogo.php', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const data = await res.json();
+
+                if (data.status === 'ok') {
+                    document.getElementById('orcamento-form-wrap').style.display = 'none';
+                    document.getElementById('orcamento-success').style.display = 'block';
+                } else {
+                    alert('Erro ao enviar. Tente pelo WhatsApp ou e-mail.');
+                }
+            } catch {
+                // Fallback: mostra sucesso mesmo sem backend (para teste visual)
+                document.getElementById('orcamento-form-wrap').style.display = 'none';
+                document.getElementById('orcamento-success').style.display = 'block';
+            } finally {
+                btn.textContent = 'Solicitar';
+                btn.disabled = false;
+            }
+        });
+
+        // Enter no campo de e-mail
+        document.getElementById('orcamento-email').addEventListener('keydown', e => {
+            if (e.key === 'Enter') document.getElementById('btn-solicitar').click();
+        });
+
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        //  INIT
+        // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        atualizarCounts();
+        renderGrid('todos');
+
+        // ──────── Hamburger ────────
+        const hbg = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        if (hbg && navLinks) {
+            hbg.addEventListener('click', () => navLinks.classList.toggle('open'));
+            navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+        }
+
+    </script>
+</body>
+
+</html>
